@@ -14,15 +14,15 @@ hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
 
 app.use((req, res, next) => {
-  var now = new Date().toString();
-  var log = `${now}: ${req.method} ${req.url}`
-  console.log(log);
-  fs.appendFile('server.log', log + '\n', (err) => {
-    if(err){
-      console.log('Unable to append to server.log.');
-    }
-  });
-  next();
+    var now = new Date().toString();
+    var log = `${now}: ${req.method} ${req.url}`
+    console.log(log);
+    fs.appendFile('server.log', log + '\n', (err) => {
+        if (err) {
+            console.log('Unable to append to server.log.');
+        }
+    });
+    next();
 });
 
 // // Maintenance Mode
@@ -33,54 +33,54 @@ app.use((req, res, next) => {
 //   });
 // });
 
-// allows html pages to run without having to create a path to each one
+// allows html pages in the public folder to run without having to create a path to each one
 app.use(express.static(__dirname + '/public'));
 
 // sets up a helper function for hbs
 hbs.registerHelper('getCurrentYear', () => {
-  return new Date().getFullYear()
+    return new Date().getFullYear()
 });
 
 hbs.registerHelper('screamIt', (text) => {
-  return text.toUpperCase();
+    return text.toUpperCase();
 });
 
 
 app.get('/', (req, res) => {
-  // res.send('<h1>hello express</h1>');
-  // res.send({
-  //   name: 'Spencer',
-  //   likes: [
-  //     'Biking',
-  //     'Cities'
-  //   ]
-  // })
-  res.render('home.hbs', {
-    pageTitle: 'Home Page',
-    welcomeMessage: 'This year is THE year!'
-  });
+    // res.send('<h1>hello express</h1>');
+    // res.send({
+    //   name: 'Spencer',
+    //   likes: [
+    //     'Biking',
+    //     'Cities'
+    //   ]
+    // })
+    res.render('home.hbs', {
+        pageTitle: 'Home Page',
+        welcomeMessage: 'This year is THE year!'
+    });
 });
 
 app.get('/about', (req, res) => {
-  res.render('about.hbs', {
-    pageTitle: 'About Page',
-    // currentYear: new Date().getFullYear()
-  });
+    res.render('about.hbs', {
+        pageTitle: 'About Page',
+        // currentYear: new Date().getFullYear()
+    });
 });
 
 app.get('/projects', (req, res) => {
-  res.render('projects.hbs', {
-    pageTitle: 'Projects Page',
-    // currentYear: new Date().getFullYear()
-  });
+    res.render('projects.hbs', {
+        pageTitle: 'Projects Page',
+        // currentYear: new Date().getFullYear()
+    });
 });
 
 app.get('/bad', (req, res) => {
-  res.send({
-    errorMessage: 'Unable to process request'
-  });
+    res.send({
+        errorMessage: 'Unable to process request'
+    });
 });
 
-app.listen(port, () =>{
-  console.log(`Server is up on port ${port}`);
+app.listen(port, () => {
+    console.log(`Server is up on port ${port}`);
 });
