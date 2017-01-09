@@ -1,0 +1,19 @@
+* Steps to deploy to GIT and Heroku *
+
+- git init 
+    adds git repo to current directory
+- git status
+    current status of repo
+- git add filename or path
+- git add . 
+    (adds all tracked and untracked shown in status)
+- git commit -m ''
+    commits with message
+- git push
+    pushes to git to main repo
+- git push Heroku  
+    pushes from git to Heroku
+- heroku open
+    opens via browser
+
+    
